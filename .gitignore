@@ -122,6 +122,9 @@ celerybeat.pid
 # Environments
 .env
 .venv
+.notesapp
+notesapp/
+notesapp.bak/
 env/
 venv/
 ENV/
