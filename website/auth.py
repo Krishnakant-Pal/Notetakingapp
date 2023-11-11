@@ -18,10 +18,10 @@ def home():
 
         elif user.check_password(existing_user['password'], password):
             flash('You are logged in', category='success')
-            return redirect(url_for('auth.home'))
+            return redirect(url_for('views.home'))
         else: 
             flash('Incorrect password', category='error')
-            return redirect(url_for('view.home'))
+            return redirect(url_for('auth.home'))
     
     return render_template("login.html")
 
