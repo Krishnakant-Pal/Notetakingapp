@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template,request,flash
-
-
+from flask import Blueprint, render_template,request,flash,redirect,url_for
+from website.models import User
+from website.config import db
 auth = Blueprint('auth', __name__)
 
 @auth.route('/login',methods=['GET', 'POST'])
@@ -16,11 +16,12 @@ def signup():
         password2 = request.form.get('password2')
 
         # user = User.query.filter_by(email=email).first()
-        user = None
-        
-        if user:
+        user = User()
+        existing_user = user.find_user(email)
+
+        if existing_user:
             flash('Email already exists.', category='error')
-        elif len(email) < 4:
+        if len(email) < 4:
             flash('Email must be greater than 3 characters.', category='error')
         elif len(first_name) < 2:
             flash('First name must be greater than 1 character.', category='error')
@@ -29,9 +30,15 @@ def signup():
         elif len(password1) < 7:
             flash('Password must be at least 7 characters.', category='error')
         else:
-            flash("Account Creater")
-
-
+            # new_user = [email=email,first_name=first_name,password=password1]
+            new_user = {
+                "email": email,
+                "username": first_name,
+                "password": password1
+            }
+            user.create_user(**new_user)
+            flash('Account created!', category='success')
+            return redirect(url_for('views.home'))
 
     return render_template("signup.html")
 
