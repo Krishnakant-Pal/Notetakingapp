@@ -2,15 +2,20 @@
  {% block title %}Home{% endblock %} 
  
  {% block content %}
-<h1>Welcome to Notesapp!</h1>
+<!-- <h1>Welcome to Notesapp!</h1> -->
 <br />
 <br />
-<a>Just login and start taking notes</a>
 
 <h1 align="center" >Notes </h1>
 <ul class="list-group list-group-flush" id="notes">
-    {% for note in  user.notes %}
-    <li class = "list-group-item">{{note.data }}</li>
+    <a>User: {{user.email['username']}}</a>
+    {% for note in notes %}
+    <li class = "list-group-item">{{ note }}</li>
+    {% endfor %}
+</ul>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in note_cursor %}
+    <li class = "list-group-item">{{ note['note'] }}</li>
     {% endfor %}
 </ul>
 

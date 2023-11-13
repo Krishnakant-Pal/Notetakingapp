@@ -1,8 +1,8 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template,flash,redirect,request,url_for
 from flask_login import login_required,current_user
 
 
-
+from website.config import db
 
 views = Blueprint('views', __name__)
 
@@ -16,9 +16,13 @@ def home():
             flash('Note is too short',category='error')
 
         else:
-            db.notes.insert_one({'note': note, 'user': current_user.email})
+            db.notes.insert_one({'note': note, 'user': current_user.email['email']})
             flash('Note added', category='success')
             return redirect(url_for('views.home'))
-        
-    return render_template('home.html',user = current_user)
+        print(current_user)
+    cursor = db.notes.find({'user':current_user.email['email']})
+    all_notes = []
+    for note in cursor:
+        all_notes.append(note['note'])
+    return render_template('home.html',notes = all_notes, user = current_user)
 
