@@ -5,18 +5,28 @@ This application enables users to create, view, update, and delete notes. Built 
 ### Installation
 Clone Repository:
 Copy code
-```git clone https://github.com/Krishnakant-Pal/Notetakingapp```
-```cd Notetakingapp```
+```
+git clone https://github.com/Krishnakant-Pal/Notetakingapp
+```
+```
+cd Notetakingapp
+```
 
 
 ### Setup Virtual Environment (Optional):
 
-``` python3 -m venv venv```
-```source venv/bin/activate (Linux/macOS) or venv\Scripts\activate (Windows) ```
+``` 
+python3 -m venv venv
+```
+```
+source venv/bin/activate (Linux/macOS) or venv\Scripts\activate (Windows) 
+```
 
 ### Install Dependencies:
 
-```pip install -r requirements.txt ```
+```
+pip install -r requirements.txt 
+```
 
 
 ### Set Up MongoDB:
