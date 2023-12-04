@@ -8,17 +8,20 @@
 
 <h1 align="center" >Notes </h1>
 <ul class="list-group list-group-flush" id="notes">
-    <a>User: {{user.email['username']}}</a>
+<!-- fetching all the notes-->
     {% for note in notes %}
-    <li class = "list-group-item">{{ note }}</li>
-    {% endfor %}
-</ul>
-<ul class="list-group list-group-flush" id="notes">
-    {% for note in note_cursor %}
-    <li class = "list-group-item">{{ note['note'] }}</li>
+    <li class = "list-group-item">
+        {{ note }}
+        <!-- To delete notes button -->
+        <button type="button" class="close" onClick="deleteNote({{ note }})">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </li>
     {% endfor %}
 </ul>
 
+
+<!-- for Submiting new notes  -->
  <form method="post">
     <textarea name="note" id = "note" class = "form-control"></textarea>
     <br />
